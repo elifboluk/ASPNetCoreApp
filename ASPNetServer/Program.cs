@@ -114,7 +114,7 @@ app.MapGet("/get-product-by-id/{productId}", async (int productId) =>
     {
         return Results.BadRequest();
     }
-}).WithTags("Product Endpoints");
+}).WithTags("Products Endpoints");
 
 app.MapPost("/create-product", async (Product productToCreate) =>
 {
@@ -162,7 +162,7 @@ app.MapDelete("/delete-product-by-id/{productId}", async (int productId) =>
 
 app.MapGet("/get-all-orderdetails", async () => await OrderDetailRepository.GetOrderDetailsAsync()).WithTags("Order Details Endpoints");
 
-app.MapGet("/get-order-by-id/{orderdetailId}", async (int orderDetailId) =>
+app.MapGet("/get-orderdetail-by-id/{orderdetailId}", async (int orderDetailId) =>
 {
     OrderDetail orderDetailToReturn = await OrderDetailRepository.GetOrderDetailsByIdAsync(orderDetailId);
     if (orderDetailToReturn != null)
@@ -175,7 +175,7 @@ app.MapGet("/get-order-by-id/{orderdetailId}", async (int orderDetailId) =>
     }
 }).WithTags("Order Details Endpoints");
 
-app.MapPost("/create-order-detail", async (OrderDetail orderDetailToCreate) =>
+app.MapPost("/create-orderdetail", async (OrderDetail orderDetailToCreate) =>
 {
     bool createSuccesful = await OrderDetailRepository.CreateOrderDetailsAsync(orderDetailToCreate);
 
@@ -189,7 +189,7 @@ app.MapPost("/create-order-detail", async (OrderDetail orderDetailToCreate) =>
     }
 }).WithTags("Order Details Endpoints");
 
-app.MapPut("/update-order-detail", async (OrderDetail orderDetailToUpdate) =>
+app.MapPut("/update-orderdetail", async (OrderDetail orderDetailToUpdate) =>
 {
     bool updateSuccesful = await OrderDetailRepository.UpdateOrderDetailsAsync(orderDetailToUpdate);
 
@@ -203,7 +203,7 @@ app.MapPut("/update-order-detail", async (OrderDetail orderDetailToUpdate) =>
     }
 }).WithTags("Order Details Endpoints");
 
-app.MapDelete("/delete-order-detail-by-id/{orderdetailId}", async (int orderdetailId) =>
+app.MapDelete("/delete-orderdetail-by-id/{orderdetailId}", async (int orderdetailId) =>
 {
     bool deleteSuccesful = await OrderDetailRepository.DeleteOrderDetailsAsync(orderdetailId);
 

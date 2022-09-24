@@ -1,13 +1,14 @@
 import React, { useState } from "react";
+import Constants from "./utilities/Constants";
 
 export default function App() {
   const [orderdetails, setOrderDetails] = useState([]);
 
   function getOrderDetails() {
-    const url = 'https://localhost:7215/get-all-orderdetails';
+    const url = Constants.API_URL_GET_ALL_ORDERDETAILS;
+
     fetch(url, {
       method: 'GET'
-
     }).then(response => response.json())
       .then(orderdetailsFromServer => {
         console.log(orderdetailsFromServer);
@@ -48,9 +49,9 @@ export default function App() {
               <th scope="col">OrderDetailId(PK)</th>
               <th scope="col">Total</th>
               <th scope="col">ProductId</th>
-              <th scope="col">Product</th>
+              <th scope="col">Product Name</th>
               <th scope="col">OrderId</th>
-              <th scope="col">Order</th>
+              <th scope="col">Order Name</th>
               <th scope="col">CRUD Operations</th>
             </tr>
           </thead>

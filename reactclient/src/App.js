@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Constants from "./utilities/Constants";
+import OrderDetailCreateForm from "./components/OrderDetailCreateForm";
 
 export default function App() {
   const [orderdetails, setOrderDetails] = useState([]);
+  const [showingCreateNewOrderDetailForm, setShowingCreateNewOrderDetailForm] = useState(false);
 
   function getOrderDetails() {
     const url = Constants.API_URL_GET_ALL_ORDERDETAILS;
@@ -25,16 +27,19 @@ export default function App() {
     <div className="container">
       <div className="row min-vh-100">
         <div className="col d-flex flex-column justify-content-center align-items-center">
-          <div>
-            <h1>ASP.Net Core App</h1>
-            <div className="mt-5">
-              <button onClick={getOrderDetails} className='btn btn-dark btn-large w-100'>Get Order Details from server</button>
-              <button onClick={() => { }} className='btn btn-secondary btn-large w-100 mt-4'>Create New Order Detail </button>
-
+          {showingCreateNewOrderDetailForm === false && (
+            <div>
+              <h1>ASP.Net Core App</h1>
+              <div className="mt-5">
+                <button onClick={getOrderDetails} className='btn btn-dark btn-large w-100'>Get Order Details from server</button>
+                <button onClick={() => setShowingCreateNewOrderDetailForm(true)} className='btn btn-secondary btn-large w-100 mt-4'>Create New Order Detail </button>
+              </div>
             </div>
-          </div>
+          )}
 
-          {orderdetails.length > 0 && renderOrderDetailsTable()}
+          {(orderdetails.length > 0 && showingCreateNewOrderDetailForm === false) && renderOrderDetailsTable()}
+
+          {showingCreateNewOrderDetailForm && <OrderDetailCreateForm onOrderDetailCreated={onOrderDetailCreated} />}
         </div>
       </div>
     </div>
@@ -51,19 +56,19 @@ export default function App() {
               <th scope="col">ProductId</th>
               <th scope="col">Product Name</th>
               <th scope="col">OrderId</th>
-              <th scope="col">Order Name</th>
+              <th scope="col">Ordering Company Name</th>
               <th scope="col">CRUD Operations</th>
             </tr>
           </thead>
           <tbody>
             {orderdetails.map((orderdetails) => (
-              <tr key={orderdetails.orderdetailId}>
-                <th scope='row'>{orderdetails.orderdetailId}</th>                
+              <tr key={orderdetails.orderDetailId}>
+                <th scope='row'>{orderdetails.orderDetailId}</th>
                 <td>{orderdetails.total}</td>
                 <td>{orderdetails.productId}</td>
-                <td>{orderdetails.Product}</td>
+                <td>{orderdetails.productname}</td>
                 <td>{orderdetails.orderId}</td>
-                <td>{orderdetails.Order}</td> 
+                <td>{orderdetails.orderingcompanyname}</td>
                 <td>
                   <button className="btn btn-dark btn-lg active mx-9 my-3">Update</button>
                   <button className="btn btn-danger btn-lg active">Delete</button>
@@ -76,6 +81,18 @@ export default function App() {
         <button onClick={() => setOrderDetails([])} className="btn btn-dark btn-lg w-100">Empty React Order Details array.</button>
       </div>
     );
+
+
+  }
+
+  function onOrderDetailCreated(createdOrderDetail) {
+    setShowingCreateNewOrderDetailForm(false);
+    if (createdOrderDetail === null) {
+      return;
+    }
+    alert(`Order Detail succesfully created. After clicking OK, your new order detail tilted "${createdOrderDetail.total}" will show up in the table below.`);
+
+    getOrderDetails();
   }
 }
 

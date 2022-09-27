@@ -16,10 +16,10 @@ namespace ASPNetServer.Data
 
         public int ProductId { get; set; }
 
-        public virtual Product Product { get; set; }
+        public virtual Product ProductName { get; set; }
 
         public int OrderId { get; set; }
 
-        public virtual Order Order { get; set; }
+        public virtual Order OrderingCompanyName { get; set; }
     }
 }

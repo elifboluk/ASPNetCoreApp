@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Constants from '../utilities/Constants'
 
-export default function OrderDetailCreateForm() {
+export default function OrderDetailCreateForm(props) {
     const [formData, setFormData] = useState(initialFormData);
 
     const initialFormData = Object.freeze({
@@ -47,6 +47,7 @@ export default function OrderDetailCreateForm() {
               console.log(error);
               alert(error);
             });
+            props.onOrderDetailCreated(orderdetailToCreate);
     };
 
     

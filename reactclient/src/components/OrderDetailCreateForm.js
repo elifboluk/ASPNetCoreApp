@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Constants from '../utilities/Constants'
 
 export default function OrderDetailCreateForm(props) {
-    const [formData, setFormData] = useState(initialFormData);
 
     const initialFormData = Object.freeze({
         total:"Order Detail x",
@@ -11,6 +10,8 @@ export default function OrderDetailCreateForm(props) {
         orderid:"x",
         order:"This is Order Detail x and it has are interesting order."
     });
+
+    const [formData, setFormData] = useState(initialFormData);    
 
     const handleChange=(e) => {
         setFormData({

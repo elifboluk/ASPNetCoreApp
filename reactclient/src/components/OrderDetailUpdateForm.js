@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Constants from '../utilities/Constants'
 
-export default function OrderDetailCreateForm(props) {
+export default function OrderDetailUpdateForm(props) {
 
     const initialFormData = Object.freeze({
         total: "Order Detail x",
@@ -54,7 +54,7 @@ export default function OrderDetailCreateForm(props) {
 
     return (
         <form className="w-100 px-5">
-            <h1 className="mt-5">Create new order detail</h1>
+            <h1 className="mt-5">Updating the order detail {props.orderdetail.total}</h1>
 
             <div className="mt-5">
                 <label clasName="h3 form-label">Order Detail Total</label>

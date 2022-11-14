@@ -5,10 +5,11 @@ export default function OrderDetailCreateForm(props) {
 
     const initialFormData = Object.freeze({
         total: "Order Detail x",
-        productid: "x",
-        product: "This is Order Detail x and it has are interesting product.",
-        orderid: "x",
-        order: "This is Order Detail x and it has are interesting order."
+        productname: "x",
+        productquantity: "This is Order Detail x and it has are interesting product.",
+        productprice: "x",
+        orderingcompanyname: "This is Order Detail x and it has are interesting order.",
+        orderdate:"x"
     });
 
     const [formData, setFormData] = useState(initialFormData);
@@ -23,13 +24,14 @@ export default function OrderDetailCreateForm(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const orderdetailToCreate = {
+        const orderdetailToCreate = {           
             orderdetailId: 0,
             total: formData.total,
-            productid: formData.productid,
-            product: formData.product,
-            orderid: formData.orderid,
-            order: formData.order
+            productname: formData.productname,
+            productquantity: formData.productquantity,
+            productpice: formData.productprice,
+            orderingcompanyname: formData.orderingcompanyname,
+            orderdate: formData.orderdate
         };
         const url = Constants.API_URL_CREATE_ORDERDETAIL;
 
@@ -62,23 +64,28 @@ export default function OrderDetailCreateForm(props) {
             </div>
 
             <div className="mt-4">
-                <label clasName="h3 form-label">Order Detail ProductId</label>
-                <input value={formData.productid} name="productid" type="text" className="form-control" onChange={handleChange} />
+                <label clasName="h3 form-label">Order Detail Product Name</label>
+                <input value={formData.productname} name="productid" type="text" className="form-control" onChange={handleChange} />
             </div>
 
             <div className="mt-4">
-                <label clasName="h3 form-label">Order Detail Product</label>
-                <input value={formData.product} name="product" type="text" className="form-control" onChange={handleChange} />
+                <label clasName="h3 form-label">Order Detail Product Quantity</label>
+                <input value={formData.productquantity} name="product" type="text" className="form-control" onChange={handleChange} />
             </div>
 
             <div className="mt-4">
-                <label clasName="h3 form-label">Order Detail OrderId</label>
-                <input value={formData.orderid} name="orderid" type="text" className="form-control" onChange={handleChange} />
+                <label clasName="h3 form-label">Order Detail Price</label>
+                <input value={formData.productprice} name="orderid" type="text" className="form-control" onChange={handleChange} />
             </div>
 
             <div className="mt-4">
-                <label clasName="h3 form-label">Order Detail Order</label>
-                <input value={formData.order} name="order" type="text" className="form-control" onChange={handleChange} />
+                <label clasName="h3 form-label">Order Detail Company Name</label>
+                <input value={formData.orderingcompanyname} name="order" type="text" className="form-control" onChange={handleChange} />
+            </div>
+
+            <div className="mt-4">
+                <label clasName="h3 form-label">Order Detail Order Date</label>
+                <input value={formData.orderdate} name="order" type="text" className="form-control" onChange={handleChange} />
             </div>
 
             <button onClick={handleSubmit} className="btn btn-dark btn-lg w-100 mt-5">Submit</button>

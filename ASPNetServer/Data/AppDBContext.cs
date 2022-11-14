@@ -1,29 +1,31 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace ASPNetServer.Data
 {
-    public class AppDBContext : DbContext
-    {
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Order> Orders { get; set; }
+    internal sealed class AppDBContext : DbContext
+    {     
         public DbSet<OrderDetail> OrderDetails { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder) => dbContextOptionsBuilder.UseSqlite("Data Source=./Data/AppDb.db");
-        public void DbModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            Order[] orderToSeed = new Order[6];
-            for (int i = 0; i <= 6; i++)
+            OrderDetail[] orderDetailsToSeed = new OrderDetail[7];
+            for (int i = 0; i <= 7; i++)
             {
-                orderToSeed[i - 1] = new Order
+                orderDetailsToSeed[i - 1] = new OrderDetail
                 {
-                    OrderId = 1,
-                    OrderDate = DateTime.Now,
-                    OrderingCompanyName = "SÜTİŞ"
+                    OrderDetailId = i,
+                    Total=10,
+                    ProductName= $"Total{i}",
+                    ProductQuantity=100,
+                    ProductPrice=500,
+                    OrderingCompanyName = "SÜTİŞ",
+                    OrderDate = DateTime.Now                    
                 };
             }
-            modelBuilder.Entity<Order>().HasData(orderToSeed);
+            modelBuilder.Entity<OrderDetail>().HasData(orderDetailsToSeed);
         }
-                
+
     }
 }

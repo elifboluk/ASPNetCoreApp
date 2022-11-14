@@ -7,19 +7,15 @@ using System.Threading.Tasks;
 
 namespace ASPNetServer.Data
 {
-    public class OrderDetail
+    internal sealed class OrderDetail
     {
         [Key]
         public int OrderDetailId { get; set; }
-
         public decimal Total { get; set; }
-
-        public int ProductId { get; set; }
-
-        public virtual Product ProductName { get; set; }
-
-        public int OrderId { get; set; }
-
-        public virtual Order OrderingCompanyName { get; set; }
+        public string? ProductName { get; set; }
+        public int ProductQuantity { get; set; }
+        public decimal ProductPrice { get; set; }
+        public string? OrderingCompanyName { get; set; }
+        public DateTime OrderDate { get; set; }
     }
 }

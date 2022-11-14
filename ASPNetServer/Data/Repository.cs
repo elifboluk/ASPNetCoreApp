@@ -3,7 +3,7 @@
 namespace ASPNetServer.Data
 
 {   
-    public static class OrderDetailRepository
+    public static class OrderDetailRepository 
     {
         public async static Task<List<OrderDetail>> GetOrderDetailsAsync()
         {
@@ -13,13 +13,13 @@ namespace ASPNetServer.Data
             }
         }
 
-        public async static Task<OrderDetail> GetOrderDetailsByIdAsync(int orderDetailId)
-        {
-            using (var db = new AppDBContext())
-            {
-                return await db.OrderDetails.FirstOrDefaultAsync(OrderDetail => OrderDetail.OrderDetailId == orderDetailId);
-            }
-        }
+        //public async static Task<OrderDetail> GetOrderDetailsByIdAsync(int orderDetailId)
+        //{
+        //    using (var db = new AppDBContext())
+        //    {
+        //        return await db.OrderDetails.FirstOrDefaultAsync(OrderDetail => OrderDetail.OrderDetailId == orderDetailId);
+        //    }
+        //}
 
         public async static Task<bool> CreateOrderDetailsAsync(OrderDetail orderDetailToCreate)
         {

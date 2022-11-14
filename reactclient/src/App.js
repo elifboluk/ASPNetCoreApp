@@ -52,11 +52,12 @@ export default function App() {
           <thead>
             <tr>
               <th scope="col">OrderDetailId(PK)</th>
-              <th scope="col">Total</th>
-              <th scope="col">ProductId</th>
+              <th scope="col">Total</th>              
               <th scope="col">Product Name</th>
-              <th scope="col">OrderId</th>
+              <th scope="col">Product Quantity</th>              
+              <th scope="col">Product Price</th>
               <th scope="col">Ordering Company Name</th>
+              <th scope="col">Order Date</th>
               <th scope="col">CRUD Operations</th>
             </tr>
           </thead>
@@ -65,10 +66,11 @@ export default function App() {
               <tr key={orderdetails.orderDetailId}>
                 <th scope='row'>{orderdetails.orderDetailId}</th>
                 <td>{orderdetails.total}</td>
-                <td>{orderdetails.productId}</td>
                 <td>{orderdetails.productname}</td>
-                <td>{orderdetails.orderId}</td>
+                <td>{orderdetails.productquantity}</td>
+                <td>{orderdetails.productprice}</td>
                 <td>{orderdetails.orderingcompanyname}</td>
+                <td>{orderdetails.OrderDate}</td>
                 <td>
                   <button className="btn btn-dark btn-lg active mx-9 my-3">Update</button>
                   <button className="btn btn-danger btn-lg active">Delete</button>
